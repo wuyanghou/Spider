@@ -29,7 +29,6 @@ const getHtml =(url)=> {
     })
 }
 const {query}=require('./util/db');
-// const url = 'http://sou.zhaopin.com/jobs/searchresult.ashx?jl=%E5%B9%BF%E5%B7%9E&kw=web%E5%89%8D%E7%AB%AF&isadv=0&sg=8cd66893b0d14261bde1e33b154456f2&p=1';
 const url = 'http://sou.zhaopin.com/jobs/searchresult.ashx?jl=%E5%B9%BF%E5%B7%9E&kw=web%E5%89%8D%E7%AB%AF&p=1&isadv=0';
 
 const getInfo=(html)=>{
@@ -46,7 +45,9 @@ const getInfo=(html)=>{
         let zwyx = $(this).find('.zwyx').text().replace(/\s+/g,"").replace(/\n/g,'');
         let gzdd = $(this).find('.gzdd').text().replace(/\s+/g,"").replace(/\n/g,'');
         let gxsj = $(this).find('.gxsj').find('span').text().replace(/\s+/g,"").replace(/\n/g,'');
-        let details = $(this).find('.newlist_deatil_last').html();
+        let detailTwo = $(this).find('.newlist_deatil_two').html();
+        let detailsLast = $(this).find('.newlist_deatil_last').html();
+        let details=detailTwo+detailsLast;
         res.push({
             zwmc,
             gsmc,
@@ -55,7 +56,7 @@ const getInfo=(html)=>{
             gxsj,
             details
         })
-        console.log(details);
+        console.log(detailTwo+detailsLast);
         query(`insert into jobs (zwmc,gsmc, zwyx,gzdd,gxsj,details) values ('${zwmc}','${gsmc}','${zwyx}','${gzdd}','${gxsj}','${details}')`)
     })
     res.shift();

@@ -5,6 +5,6 @@ CREATE TABLE   IF NOT EXISTS  `jobs` (
   `zwyx` varchar(255) DEFAULT NULL,
   `gzdd` varchar(255) DEFAULT NULL,
   `gxsj` varchar(255) DEFAULT NULL,
-  `details` varchar(255) DEFAULT NULL,
+  `details` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
